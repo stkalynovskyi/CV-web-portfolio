@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.jsx';
+import ContactPage from '../components/ContactPage.jsx';
+---
+
+<Layout
+  title="Contacto — Stanislav Kalynovskyi"
+  description="Contacta con Stanislav Kalynovskyi para proyectos o oportunidades laborales. Disponible para proyectos en Valencia, España."
+  activePage="/contacto"
+>
+  <Navbar client:load activePage="/contacto" />
+  <ContactPage client:load />
+</Layout>

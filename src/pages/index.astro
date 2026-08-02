@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.jsx';
+import Hero from '../components/Hero.jsx';
+---
+
+<Layout title="Stanislav Kalynovskyi — Desarrollador Full-Stack">
+  <Navbar client:load activePage="/" />
+  <Hero client:load />
+</Layout>

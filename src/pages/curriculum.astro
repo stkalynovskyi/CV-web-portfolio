@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.jsx';
+import CurriculumPage from '../components/CurriculumPage.jsx';
+---
+
+<Layout
+  title="Currículum — Stanislav Kalynovskyi"
+  description="Experiencia profesional y stack técnico de Stanislav Kalynovskyi. Prácticas en AHORA ERP con C#, .NET y T-SQL."
+  activePage="/curriculum"
+>
+  <Navbar client:load activePage="/curriculum" />
+  <CurriculumPage client:load />
+</Layout>
