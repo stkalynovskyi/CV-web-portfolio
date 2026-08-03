@@ -31,5 +31,11 @@ const {
   </head>
   <body>
     <slot />
+
+    <div style="position: fixed; bottom: 1.5rem; right: 2rem; z-index: 50; pointer-events: none; opacity: 0.35;">
+      <p style="font-family: var(--font-body); font-size: 0.65rem; color: var(--text-1); letter-spacing: 0.05em; text-align: right;">
+        &copy; {new Date().getFullYear()} Stanislav Kalynovskyi<br />Todos los derechos reservados.
+      </p>
+    </div>
   </body>
 </html>

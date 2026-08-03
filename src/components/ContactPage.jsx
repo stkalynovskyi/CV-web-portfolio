@@ -15,8 +15,8 @@ function FadeIn({ children, delay = 0 }) {
 const contacts = [
   {
     label: 'Email',
-    value: 'stanislav.kalynovskyi@gmail.com',
-    href: 'mailto:stanislav.kalynovskyi@gmail.com',
+    value: 'st.kalynovskyi@gmail.com',
+    href: 'mailto:st.kalynovskyi@gmail.com',
     icon: (
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -25,9 +25,19 @@ const contacts = [
     ),
   },
   {
+    label: 'Teléfono',
+    value: '+34 687 63 13 60',
+    href: 'tel:+34687631360',
+    icon: (
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+    ),
+  },
+  {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/skalynovskyi',
-    href: 'https://linkedin.com/in/skalynovskyi',
+    value: 'linkedin.com/in/stanislavkalynovskyi',
+    href: 'https://linkedin.com/in/stanislavkalynovskyi',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -53,7 +63,7 @@ export default function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Opens mail client as fallback
-    window.location.href = `mailto:stanislav.kalynovskyi@gmail.com?subject=Contacto desde portfolio — ${form.name}&body=${encodeURIComponent(form.message)}`;
+    window.location.href = `mailto:st.kalynovskyi@gmail.com?subject=Contacto desde portfolio — ${form.name}&body=${encodeURIComponent(form.message)}`;
     setSent(true);
   };
 

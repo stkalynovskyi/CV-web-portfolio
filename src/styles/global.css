@@ -23,16 +23,11 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--cyan) rgba(255,255,255,0.04);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb {
-  background: var(--cyan);
-  border-radius: 3px;
-}
+::-webkit-scrollbar { display: none; }
 
 body {
   background: var(--bg);
@@ -179,6 +174,16 @@ body::after {
   50%       { opacity: 0.5; transform: scale(0.8); }
 }
 .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+@keyframes pulse-anim {
+  0%, 100% { opacity: 0.5; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
 
 /* ─── Tilt card ─────────────────────────────────────────── */
 .tilt {

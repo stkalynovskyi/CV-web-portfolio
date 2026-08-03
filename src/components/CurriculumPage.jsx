@@ -16,8 +16,8 @@ const experience = [
   {
     company: 'AHORA ERP',
     role: 'Desarrollador de Software',
-    type: 'Prácticas FCT · 5 meses',
-    period: 'Feb 2025 — Jun 2025',
+    type: 'Prácticas FCT · 3 meses',
+    period: 'Mar 2026 — Jun 2026',
     location: 'Valencia, España',
     tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git'],
     bullets: [
@@ -25,6 +25,18 @@ const experience = [
       'Diseño y optimización de consultas complejas en SQL Server mediante T-SQL, incluyendo procedimientos almacenados.',
       'Gestión de control de versiones con Git y trabajo colaborativo en equipo de desarrollo.',
       'Detección y resolución de bugs en módulos existentes, mejorando estabilidad de funcionalidades críticas.',
+    ],
+  },
+  {
+    company: 'MobiTech',
+    role: 'Técnico en Mantenimiento y Soporte Informático',
+    type: 'Prácticas',
+    period: 'Mar 2024 — Jul 2024',
+    location: 'Valencia, España',
+    tech: ['Hardware', 'Software', 'Redes locales'],
+    bullets: [
+      'Reparación y mantenimiento de hardware y software en equipos informáticos.',
+      'Soporte técnico a usuarios y configuración de equipos de impresión.',
     ],
   },
 ];
@@ -149,7 +161,7 @@ export default function CurriculumPage() {
             <p style={{ fontSize: '0.88rem', color: 'var(--text-2)', marginBottom: '1.5rem' }}>
               ¿Prefieres ver el currículum completo en PDF?
             </p>
-            <a href="/cv.pdf" download className="btn-primary">
+            <a href="/Stanislav_Kalynovskyi_CV.pdf" download="Stanislav_Kalynovskyi_CV.pdf" className="btn-primary">
               <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />

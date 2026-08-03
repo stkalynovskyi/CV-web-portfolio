@@ -78,8 +78,8 @@ export default function Navbar({ activePage = '' }) {
 
         {/* CV Download */}
         <a
-          href="/cv.pdf"
-          download
+          href="/Stanislav_Kalynovskyi_CV.pdf"
+          download="Stanislav_Kalynovskyi_CV.pdf"
           className="hidden md:inline-flex"
           style={{
             alignItems: 'center', gap: '0.4rem',
@@ -146,7 +146,7 @@ export default function Navbar({ activePage = '' }) {
                   {link.label}
                 </a>
               ))}
-              <a href="/cv.pdf" download style={{ marginTop: '1rem', textAlign: 'center', padding: '0.75rem', color: 'var(--cyan)', border: '1px solid rgba(0,245,255,0.25)', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+              <a href="/Stanislav_Kalynovskyi_CV.pdf" download="Stanislav_Kalynovskyi_CV.pdf" style={{ marginTop: '1rem', textAlign: 'center', padding: '0.75rem', color: 'var(--cyan)', border: '1px solid rgba(0,245,255,0.25)', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
                 Descargar CV
               </a>
             </div>

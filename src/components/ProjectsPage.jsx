@@ -20,7 +20,7 @@ const projects = [
   {
     id: 'photopin',
     title: 'PhotoPin',
-    type: 'Proyecto de Fin de Grado · Nota: 10/10',
+    type: 'Proyecto de Fin de Grado',
     description:
       'Aplicación móvil multiplataforma para capturar y descubrir fotografías geolocalizadas en tiempo real. Los usuarios publican fotos vinculadas a su GPS y las exploran en un mapa interactivo.',
     features: [

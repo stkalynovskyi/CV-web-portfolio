@@ -19,7 +19,7 @@ const education = [
 const languages = [
   { name: 'Español',   level: 'Nativo',   pct: 100 },
   { name: 'Ucraniano', level: 'Nativo',   pct: 100 },
-  { name: 'Ruso',      level: 'Avanzado', pct: 88  },
+  { name: 'Ruso',      level: 'Nativo',   pct: 100 },
   { name: 'Inglés',    level: 'Avanzado', pct: 80  },
   { name: 'Alemán',    level: 'Básico',   pct: 38  },
 ];
@@ -71,7 +71,7 @@ export default function AboutPage() {
               en T-SQL y control de versiones con Git en equipo.
             </p>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-2)', lineHeight: 1.85 }}>
-              Me gradué con matrícula de honor en DAM (nota 9/10) y cuento con formación
+              Me gradué en DAM (nota 9/10) y cuento con formación
               base en redes y sistemas gracias al SMR. Busco mi primera oportunidad
               laboral para seguir creciendo y aportar valor real desde el primer día.
             </p>
