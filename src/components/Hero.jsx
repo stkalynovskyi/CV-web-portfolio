@@ -410,6 +410,7 @@ function PortalCard({ portal, index, visible }) {
   return (
     <motion.a
       href={portal.href}
+      className="portal-card"
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
       animate={visible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -418,12 +419,11 @@ function PortalCard({ portal, index, visible }) {
       onMouseLeave={handleMouseLeave}
       style={{
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-        padding: '2rem 1.75rem', textDecoration: 'none', borderRadius: '24px',
+        textDecoration: 'none', borderRadius: '24px',
         border: hovered ? '1px solid rgba(0,245,255,0.4)' : '1px solid rgba(0,245,255,0.08)',
         background: hovered ? 'rgba(0,245,255,0.02)' : 'rgba(6,6,9,0.7)',
         backdropFilter: 'blur(24px)', cursor: 'pointer',
         transition: 'border-color 0.4s, background 0.4s',
-        minHeight: '160px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -445,7 +445,7 @@ function PortalCard({ portal, index, visible }) {
       </div>
 
       <div style={{ position: 'relative', zIndex: 1, transform: 'translateZ(50px)' }}>
-        <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: hovered ? 'var(--cyan)' : 'var(--text-1)', letterSpacing: '0.03em', marginBottom: '0.4rem', transition: 'color 0.4s' }}>
+        <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(0.95rem, 4vw, 1.25rem)', fontWeight: 800, color: hovered ? 'var(--cyan)' : 'var(--text-1)', letterSpacing: '0.03em', marginBottom: '0.4rem', transition: 'color 0.4s' }}>
           {portal.label}
         </p>
         <p style={{ fontSize: '0.78rem', color: 'var(--text-3)' }}>{portal.desc}</p>
@@ -466,7 +466,7 @@ function PortalCard({ portal, index, visible }) {
 import React from 'react';
 
 const BackgroundScene = React.memo(() => (
-  <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+  <div style={{ position: 'absolute', inset: 0, zIndex: 0, touchAction: 'pan-y' }}>
     <Canvas
       camera={{ position: [0, 0, 25], fov: 48 }}
       gl={{ antialias: false, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
@@ -752,7 +752,7 @@ export default function Hero() {
             width: '100%', maxWidth: '640px', padding: '1rem'
           }}>
             {portals.map((p, i) => (
-              <div key={p.href} style={{ width: 'calc(50% - 0.625rem)', minWidth: '240px', marginTop: i % 2 === 1 ? '4rem' : '0' }}>
+              <div key={p.href} className={`hero-card-wrapper ${i % 2 === 1 ? 'stagger' : ''}`}>
                 <PortalCard portal={p} index={i} visible={showPortals} />
               </div>
             ))}

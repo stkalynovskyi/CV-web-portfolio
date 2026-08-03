@@ -49,7 +49,7 @@ export default function Navbar({ activePage = '' }) {
 
         {/* Desktop nav */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}
-             className="hidden md:flex">
+             className="desktop-nav">
           {navLinks.map((link) => {
             const isActive = activePage === link.href;
             return (
@@ -106,8 +106,8 @@ export default function Navbar({ activePage = '' }) {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem', color: 'var(--text-2)' }}
+          className="mobile-nav"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem', color: 'var(--text-2)', alignItems: 'center' }}
           aria-label="Menú"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>

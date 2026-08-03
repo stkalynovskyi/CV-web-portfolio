@@ -54,7 +54,7 @@ export default function ProjectsPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {projects.map((p, i) => (
             <FadeIn key={p.id} delay={0.08 * i}>
-              <article className="card" style={{ padding: '2.5rem' }}>
+              <article className="card">
                 {/* Header */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
                   <div>

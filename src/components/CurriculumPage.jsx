@@ -134,10 +134,10 @@ export default function CurriculumPage() {
           </h2>
         </FadeIn>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {techGroups.map((group, i) => (
             <FadeIn key={group.label} delay={0.06 * i}>
-              <div className="card" style={{ padding: '1.75rem' }}>
+              <div className="card">
                 <p style={{ fontSize: '0.68rem', color: 'var(--text-3)', letterSpacing: '0.2em', marginBottom: '1rem' }}>
                   {group.label.toUpperCase()}
                 </p>
