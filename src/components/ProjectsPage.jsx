@@ -23,7 +23,7 @@ const content = {
     subtitle: 'Proyectos que demuestran mi capacidad técnica y criterio de diseño.',
     featuresLabel: 'FUNCIONALIDADES',
     moreProjects: 'Más proyectos en desarrollo',
-    learning: 'Aprendiendo Astro, Three.js y WebGL',
+    learning: 'Explorando nuevas tecnologías',
     projects: [
       {
         id: 'photopin',
@@ -50,7 +50,7 @@ const content = {
     subtitle: 'Projects that demonstrate my technical skills and design criteria.',
     featuresLabel: 'FEATURES',
     moreProjects: 'More projects in development',
-    learning: 'Learning Astro, Three.js and WebGL',
+    learning: 'Exploring new technologies',
     projects: [
       {
         id: 'photopin',
