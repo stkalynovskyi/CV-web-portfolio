@@ -39,7 +39,7 @@ const content = {
           'Galería filtrable por categorías y zona geográfica',
         ],
         tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
-        github: 'https://github.com/stkalynovskyi',
+        github: 'https://github.com/stkalynovskyi/PhotoPin',
         demo: null,
       },
     ]
@@ -66,7 +66,7 @@ const content = {
           'Filterable gallery by categories and geographical area',
         ],
         tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
-        github: 'https://github.com/stkalynovskyi',
+        github: 'https://github.com/stkalynovskyi/PhotoPin',
         demo: null,
       },
     ]
