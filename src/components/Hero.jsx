@@ -381,12 +381,20 @@ function CameraRig() {
 /* ══════════════════════════════════════════════════════════════
    PORTAL CARDS
 ══════════════════════════════════════════════════════════════ */
-const portals = [
-  { num: '01', label: 'Sobre mí', href: '/sobre-mi', desc: 'Quién soy' },
-  { num: '02', label: 'Proyectos', href: '/proyectos', desc: 'Lo que construyo' },
-  { num: '03', label: 'Currículum', href: '/curriculum', desc: 'Mi experiencia' },
-  { num: '04', label: 'Contacto', href: '/contacto', desc: 'Hablemos' },
-];
+const portals = {
+  es: [
+    { num: '01', label: 'Sobre mí', href: '/sobre-mi', desc: 'Quién soy' },
+    { num: '02', label: 'Proyectos', href: '/proyectos', desc: 'Lo que construyo' },
+    { num: '03', label: 'Currículum', href: '/curriculum', desc: 'Mi experiencia' },
+    { num: '04', label: 'Contacto', href: '/contacto', desc: 'Hablemos' },
+  ],
+  en: [
+    { num: '01', label: 'About', href: '/en/about', desc: 'Who I am' },
+    { num: '02', label: 'Projects', href: '/en/projects', desc: 'What I build' },
+    { num: '03', label: 'Resume', href: '/en/resume', desc: 'My experience' },
+    { num: '04', label: 'Contact', href: '/en/contact', desc: 'Let\'s talk' },
+  ]
+};
 
 function PortalCard({ portal, index, visible }) {
   const [hovered, setHovered] = useState(false);
@@ -514,7 +522,7 @@ function VignetteOverlay() {
 /* ══════════════════════════════════════════════════════════════
    MAIN HERO
 ══════════════════════════════════════════════════════════════ */
-export default function Hero() {
+export default function Hero({ lang = 'es' }) {
   const containerRef = useRef(null);
   const [appState, setAppState] = useState('loading'); // 'loading' | 'solid'
   const [scrollPct, setScrollPct] = useState(0);
@@ -632,7 +640,7 @@ export default function Hero() {
                 background: 'rgba(74,222,128,0.05)',
               }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', flexShrink: 0, animation: 'pulse 2s ease-in-out infinite' }} />
-                DISPONIBLE PARA PROYECTOS
+                {lang === 'es' ? 'DISPONIBLE PARA PROYECTOS' : 'AVAILABLE FOR PROJECTS'}
               </span>
             </motion.div>
 
@@ -664,7 +672,7 @@ export default function Hero() {
               transition={{ delay: 0.75, duration: 0.8 }}
               style={{ fontSize: 'clamp(0.9rem, 2vw, 1.15rem)', color: 'var(--text-2)', fontWeight: 300, letterSpacing: '0.04em', marginBottom: '0.6rem' }}
             >
-              Desarrollador Full-Stack
+              {lang === 'es' ? 'Desarrollador Full-Stack' : 'Full-Stack Developer'}
             </motion.p>
 
             <motion.p
@@ -673,7 +681,7 @@ export default function Hero() {
               transition={{ delay: 1.0, duration: 0.8 }}
               style={{ fontSize: '0.8rem', color: 'var(--text-3)' }}
             >
-              Valencia, España
+              {lang === 'es' ? 'Valencia, España' : 'Valencia, Spain'}
             </motion.p>
           </div>
         </motion.div>
@@ -703,7 +711,7 @@ export default function Hero() {
                 fontSize: '0.6rem', letterSpacing: '0.5em', color: 'rgba(0,245,255,0.5)',
                 fontFamily: 'var(--font-display)',
               }}>
-                ENTRANDO
+                {lang === 'es' ? 'ENTRANDO' : 'ENTERING'}
               </p>
               <motion.div
                 animate={{ scaleX: [1, 1.15, 1] }}
@@ -741,7 +749,7 @@ export default function Hero() {
               fontSize: '0.6rem', letterSpacing: '0.4em', color: 'var(--text-3)',
               fontFamily: 'var(--font-display)', marginBottom: '0.4rem',
             }}>
-              ELIGE TU DESTINO
+              {lang === 'es' ? 'ELIGE TU DESTINO' : 'CHOOSE YOUR DESTINY'}
             </p>
             <div style={{ width: '40px', height: '1px', background: 'rgba(0,245,255,0.25)', margin: '0 auto' }} />
           </motion.div>
@@ -751,7 +759,7 @@ export default function Hero() {
             display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.25rem',
             width: '100%', maxWidth: '640px', padding: '1rem'
           }}>
-            {portals.map((p, i) => (
+            {(portals[lang] || portals.es).map((p, i) => (
               <div key={p.href} className={`hero-card-wrapper ${i % 2 === 1 ? 'stagger' : ''}`}>
                 <PortalCard portal={p} index={i} visible={showPortals} />
               </div>
@@ -777,7 +785,7 @@ export default function Hero() {
             <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" d="M5 15l7-7 7 7" />
             </svg>
-            VOLVER AL INICIO
+            {lang === 'es' ? 'VOLVER AL INICIO' : 'BACK TO TOP'}
           </motion.button>
         </motion.div>
 

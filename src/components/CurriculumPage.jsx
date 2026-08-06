@@ -12,64 +12,130 @@ function FadeIn({ children, delay = 0 }) {
   );
 }
 
-const experience = [
-  {
-    company: 'AHORA ERP',
-    role: 'Desarrollador de Software',
-    type: 'Prácticas FCT · 3 meses',
-    period: 'Mar 2026 — Jun 2026',
-    location: 'Valencia, España',
-    tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git'],
-    bullets: [
-      'Desarrollo de lógica de negocio y funcionalidades backend con C# y .NET Framework en contexto de ERP empresarial.',
-      'Diseño y optimización de consultas complejas en SQL Server mediante T-SQL, incluyendo procedimientos almacenados.',
-      'Gestión de control de versiones con Git y trabajo colaborativo en equipo de desarrollo.',
-      'Detección y resolución de bugs en módulos existentes, mejorando estabilidad de funcionalidades críticas.',
+const content = {
+  es: {
+    label: 'Currículum',
+    title: 'Experiencia & Stack',
+    subtitle: 'Trayectoria profesional y tecnologías con las que trabajo.',
+    expTitle: 'EXPERIENCIA',
+    stackTitle: 'STACK TÉCNICO',
+    downloadText: '¿Prefieres ver el currículum completo en PDF?',
+    downloadBtn: 'Descargar CV en PDF',
+    experience: [
+      {
+        company: 'AHORA ERP',
+        role: 'Desarrollador de Software',
+        type: 'Prácticas FCT · 3 meses',
+        period: 'Mar 2026 — Jun 2026',
+        location: 'Valencia, España',
+        tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git'],
+        bullets: [
+          'Desarrollo de lógica de negocio y funcionalidades backend con C# y .NET Framework en contexto de ERP empresarial.',
+          'Diseño y optimización de consultas complejas en SQL Server mediante T-SQL, incluyendo procedimientos almacenados.',
+          'Gestión de control de versiones con Git y trabajo colaborativo en equipo de desarrollo.',
+          'Detección y resolución de bugs en módulos existentes, mejorando estabilidad de funcionalidades críticas.',
+        ],
+      },
+      {
+        company: 'MobiTech',
+        role: 'Técnico en Mantenimiento y Soporte Informático',
+        type: 'Prácticas · 4 meses',
+        period: 'Mar 2024 — Jul 2024',
+        location: 'Valencia, España',
+        tech: ['Hardware', 'Software', 'Redes locales'],
+        bullets: [
+          'Reparación y mantenimiento de hardware y software en equipos informáticos.',
+          'Soporte técnico a usuarios y configuración de equipos de impresión.',
+        ],
+      },
     ],
+    techGroups: [
+      {
+        label: 'Backend & Core',
+        items: ['C#', '.NET', 'Node.js', 'Java', 'Express'],
+      },
+      {
+        label: 'Frontend',
+        items: ['Angular', 'Ionic', 'Swift', 'Android Studio', 'TypeScript', 'HTML/CSS'],
+      },
+      {
+        label: 'Bases de Datos',
+        items: ['SQL Server', 'T-SQL', 'MongoDB'],
+      },
+      {
+        label: 'Herramientas',
+        items: ['Git', 'GitHub', 'Visual Studio', 'VS Code', 'Postman'],
+      },
+    ]
   },
-  {
-    company: 'MobiTech',
-    role: 'Técnico en Mantenimiento y Soporte Informático',
-    type: 'Prácticas',
-    period: 'Mar 2024 — Jul 2024',
-    location: 'Valencia, España',
-    tech: ['Hardware', 'Software', 'Redes locales'],
-    bullets: [
-      'Reparación y mantenimiento de hardware y software en equipos informáticos.',
-      'Soporte técnico a usuarios y configuración de equipos de impresión.',
+  en: {
+    label: 'Resume',
+    title: 'Experience & Stack',
+    subtitle: 'Professional trajectory and technologies I work with.',
+    expTitle: 'EXPERIENCE',
+    stackTitle: 'TECH STACK',
+    downloadText: 'Prefer to view the full resume in PDF?',
+    downloadBtn: 'Download Resume PDF',
+    experience: [
+      {
+        company: 'AHORA ERP',
+        role: 'Software Developer',
+        type: 'Internship · 3 months',
+        period: 'Mar 2026 — Jun 2026',
+        location: 'Valencia, Spain',
+        tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git'],
+        bullets: [
+          'Business logic and backend feature development with C# and .NET Framework in an enterprise ERP context.',
+          'Design and optimization of complex SQL Server queries using T-SQL, including stored procedures.',
+          'Version control management with Git and collaborative work within a development team.',
+          'Bug detection and resolution in existing modules, improving the stability of critical features.',
+        ],
+      },
+      {
+        company: 'MobiTech',
+        role: 'IT Maintenance and Support Technician',
+        type: 'Internship · 4 months',
+        period: 'Mar 2024 — Jul 2024',
+        location: 'Valencia, Spain',
+        tech: ['Hardware', 'Software', 'Local Networks'],
+        bullets: [
+          'Hardware and software repair and maintenance for computer systems.',
+          'Technical support for users and printer configuration.',
+        ],
+      },
     ],
-  },
-];
+    techGroups: [
+      {
+        label: 'Backend & Core',
+        items: ['C#', '.NET', 'Node.js', 'Java', 'Express'],
+      },
+      {
+        label: 'Frontend',
+        items: ['Angular', 'Ionic', 'Swift', 'Android Studio', 'TypeScript', 'HTML/CSS'],
+      },
+      {
+        label: 'Databases',
+        items: ['SQL Server', 'T-SQL', 'MongoDB'],
+      },
+      {
+        label: 'Tools',
+        items: ['Git', 'GitHub', 'Visual Studio', 'VS Code', 'Postman'],
+      },
+    ]
+  }
+};
 
-const techGroups = [
-  {
-    label: 'Backend & Core',
-    items: ['C#', '.NET', 'Node.js', 'Java', 'Express'],
-  },
-  {
-    label: 'Frontend',
-    items: ['React', 'Angular', 'TypeScript', 'Ionic', 'HTML/CSS'],
-  },
-  {
-    label: 'Bases de Datos',
-    items: ['SQL Server', 'T-SQL', 'MongoDB'],
-  },
-  {
-    label: 'Herramientas',
-    items: ['Git', 'GitHub', 'Visual Studio', 'VS Code', 'Postman'],
-  },
-];
-
-export default function CurriculumPage() {
+export default function CurriculumPage({ lang = 'es' }) {
+  const t = content[lang] || content.es;
   return (
     <main style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
       <div className="container">
 
         <FadeIn>
-          <p className="section-label">Currículum</p>
-          <h1 className="section-title">Experiencia & Stack</h1>
+          <p className="section-label">{t.label}</p>
+          <h1 className="section-title">{t.title}</h1>
           <p className="section-subtitle">
-            Trayectoria profesional y tecnologías con las que trabajo.
+            {t.subtitle}
           </p>
         </FadeIn>
 
@@ -78,12 +144,12 @@ export default function CurriculumPage() {
         {/* ── Experience ── */}
         <FadeIn delay={0.04}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-3)', letterSpacing: '0.2em', marginBottom: '2rem' }}>
-            EXPERIENCIA
+            {t.expTitle}
           </h2>
         </FadeIn>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '5rem' }}>
-          {experience.map((job, i) => (
+          {t.experience.map((job, i) => (
             <FadeIn key={job.company} delay={0.08}>
               <div className="card" style={{ padding: '2.5rem' }}>
                 {/* Header */}
@@ -130,12 +196,12 @@ export default function CurriculumPage() {
         {/* ── Tech Stack ── */}
         <FadeIn delay={0.04}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-3)', letterSpacing: '0.2em', marginBottom: '2rem' }}>
-            STACK TÉCNICO
+            {t.stackTitle}
           </h2>
         </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {techGroups.map((group, i) => (
+          {t.techGroups.map((group, i) => (
             <FadeIn key={group.label} delay={0.06 * i}>
               <div className="card">
                 <p style={{ fontSize: '0.68rem', color: 'var(--text-3)', letterSpacing: '0.2em', marginBottom: '1rem' }}>
@@ -159,7 +225,7 @@ export default function CurriculumPage() {
         <FadeIn delay={0.04}>
           <div style={{ textAlign: 'center' }}>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-2)', marginBottom: '1.5rem' }}>
-              ¿Prefieres ver el currículum completo en PDF?
+              {t.downloadText}
             </p>
             <a href="/Stanislav_Kalynovskyi_CV.pdf" download="Stanislav_Kalynovskyi_CV.pdf" className="btn-primary">
               <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -167,7 +233,7 @@ export default function CurriculumPage() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Descargar CV en PDF
+              {t.downloadBtn}
             </a>
           </div>
         </FadeIn>

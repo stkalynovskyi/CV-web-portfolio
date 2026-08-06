@@ -48,32 +48,89 @@ function Tag({ children }) {
   );
 }
 
-const educationItems = [
-  {
-    short: 'DAM', level: 'FPGS',
-    title: 'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma',
-    note: '⭐ Nota media: 9/10', icon: '🎓', color: '#00f5ff',
+const content = {
+  es: {
+    educationItems: [
+      {
+        short: 'DAM', level: 'FPGS',
+        title: 'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma',
+        note: '⭐ Nota media: 9/10', icon: '🎓', color: '#00f5ff',
+      },
+      {
+        short: 'SMR', level: 'FPGM',
+        title: 'Técnico en Sistemas Microinformáticos y Redes',
+        note: null, icon: '🖥️', color: '#8b5cf6',
+      },
+    ],
+    languages: [
+      { name: 'Español',    level: 'Nativo',   pct: 100, color: '#f59e0b' },
+      { name: 'Ucraniano',  level: 'Nativo',   pct: 100, color: '#3b82f6' },
+      { name: 'Ruso',       level: 'Avanzado', pct: 88,  color: '#a855f7' },
+      { name: 'Inglés',     level: 'Avanzado', pct: 80,  color: '#00f5ff' },
+      { name: 'Alemán',     level: 'Básico',   pct: 38,  color: '#10b981' },
+    ],
+    interests: ['Arquitectura limpia', 'Performance Web', 'Open Source', 'UI/UX', 'DevOps', 'Sistemas embebidos'],
+    sectionLabel: '01 / Sobre mí',
+    profileText: 'El perfil',
+    status: 'Disponible',
+    bioDesc: 'Desarrollador Full-Stack recién graduado, apasionado por construir soluciones robustas, eficientes y bien estructuradas. Me gradué con matrícula de honor en DAM (nota 9/10) y cuento con experiencia real gracias a mis prácticas en ',
+    bioCompany: 'AHORA',
+    bioWhere: ', donde trabajé con ',
+    bioTech: 'C#, .NET y T-SQL',
+    bioEnd: ' en un entorno empresarial real. Busco mi primera oportunidad de empleo para seguir creciendo y aportar valor desde el primer día.',
+    locationLabel: 'Ubicación',
+    location: 'Valencia, España',
+    locationSub: 'Remoto y Presencial',
+    contactLabel: 'Contacto',
+    eduLabel: '🎓 Formación',
+    langLabel: '🌐 Idiomas — Políglota',
+    interestLabel: '⚡ Intereses',
+    quote: '"Código limpio, tests que cubren, documentación que se entiende."'
   },
-  {
-    short: 'SMR', level: 'FPGM',
-    title: 'Técnico en Sistemas Microinformáticos y Redes',
-    note: null, icon: '🖥️', color: '#8b5cf6',
-  },
-];
+  en: {
+    educationItems: [
+      {
+        short: 'DAM', level: 'Higher Degree',
+        title: 'Multi-platform Application Development',
+        note: '⭐ Avg. Grade: 9/10', icon: '🎓', color: '#00f5ff',
+      },
+      {
+        short: 'SMR', level: 'Intermediate Degree',
+        title: 'Microcomputer Systems and Networks',
+        note: null, icon: '🖥️', color: '#8b5cf6',
+      },
+    ],
+    languages: [
+      { name: 'Spanish',    level: 'Native',   pct: 100, color: '#f59e0b' },
+      { name: 'Ukrainian',  level: 'Native',   pct: 100, color: '#3b82f6' },
+      { name: 'Russian',    level: 'Advanced', pct: 88,  color: '#a855f7' },
+      { name: 'English',    level: 'Advanced', pct: 80,  color: '#00f5ff' },
+      { name: 'German',     level: 'Basic',    pct: 38,  color: '#10b981' },
+    ],
+    interests: ['Clean Architecture', 'Web Performance', 'Open Source', 'UI/UX', 'DevOps', 'Embedded Systems'],
+    sectionLabel: '01 / About me',
+    profileText: 'The profile',
+    status: 'Available',
+    bioDesc: 'Newly graduated Full-Stack Developer passionate about building robust, efficient, and well-structured solutions. I graduated with honors in Multi-platform App Development (9/10) and gained real-world experience during my internship at ',
+    bioCompany: 'AHORA',
+    bioWhere: ', working with ',
+    bioTech: 'C#, .NET and T-SQL',
+    bioEnd: ' in an enterprise environment. I am looking for my first professional role to continue growing and deliver value from day one.',
+    locationLabel: 'Location',
+    location: 'Valencia, Spain',
+    locationSub: 'Open to Remote & On-site',
+    contactLabel: 'Contact',
+    eduLabel: '🎓 Education',
+    langLabel: '🌐 Languages — Polyglot',
+    interestLabel: '⚡ Interests',
+    quote: '"Clean code, covering tests, understandable documentation."'
+  }
+};
 
-const languages = [
-  { name: 'Español',    level: 'Nativo',   pct: 100, color: '#f59e0b' },
-  { name: 'Ucraniano',  level: 'Nativo',   pct: 100, color: '#3b82f6' },
-  { name: 'Ruso',       level: 'Avanzado', pct: 88,  color: '#a855f7' },
-  { name: 'Inglés',     level: 'Avanzado', pct: 80,  color: '#00f5ff' },
-  { name: 'Alemán',     level: 'Básico',   pct: 38,  color: '#10b981' },
-];
-
-const interests = ['Arquitectura limpia', 'Performance Web', 'Open Source', 'UI/UX', 'DevOps', 'Sistemas embebidos'];
-
-export default function About() {
+export default function About({ lang = 'es' }) {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const t = content[lang] || content.es;
 
   return (
     <section id="about" className="py-28 relative">
@@ -87,14 +144,14 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase">01 / Sobre mí</span>
+          <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase">{t.sectionLabel}</span>
           <h2 className="text-3xl sm:text-4xl font-black text-white mt-2" style={{ fontFamily: 'var(--font-display)' }}>
-            El{' '}
+            {lang === 'es' ? 'El ' : ''}
             <span style={{
               background: 'linear-gradient(135deg, #00f5ff, #8b5cf6)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             }}>
-              perfil
+              {t.profileText}
             </span>
           </h2>
         </motion.div>
@@ -117,19 +174,17 @@ export default function About() {
                     Stanislav Kalynovskyi
                   </h3>
                   <span className="text-xs px-2.5 py-1 rounded-full font-mono" style={{ color: '#10b981', background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.25)' }}>
-                    Disponible
+                  <span className="text-xs px-2.5 py-1 rounded-full font-mono" style={{ color: '#10b981', background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.25)' }}>
+                    {t.status}
                   </span>
                 </div>
                 <p className="text-white/55 text-sm leading-relaxed mb-4">
-                  Desarrollador Full-Stack recién graduado, apasionado por construir soluciones robustas,
-                  eficientes y bien estructuradas. Me gradué con matrícula de honor en DAM (nota 9/10)
-                  y cuento con experiencia real gracias a mis prácticas en <strong className="text-white/80">AHORA</strong>,
-                  donde trabajé con <strong className="text-cyan-400/80">C#, .NET y T-SQL</strong> en un
-                  entorno empresarial real. Busco mi primera oportunidad de empleo para seguir creciendo
-                  y aportar valor desde el primer día.
+                  {t.bioDesc}<strong className="text-white/80">{t.bioCompany}</strong>
+                  {t.bioWhere}<strong className="text-cyan-400/80">{t.bioTech}</strong>
+                  {t.bioEnd}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {['C# / .NET', 'Node.js', 'React', 'Angular', 'MongoDB', 'T-SQL', 'Git'].map((t) => <Tag key={t}>{t}</Tag>)}
+                  {['C# / .NET', 'Node.js', 'Java', 'Angular', 'MongoDB', 'T-SQL', 'Git'].map((t) => <Tag key={t}>{t}</Tag>)}
                 </div>
               </div>
             </div>
@@ -140,18 +195,18 @@ export default function About() {
             <div className="flex flex-col gap-4 h-full">
               <div>
                 <span className="text-3xl mb-3 block">📍</span>
-                <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-1">Ubicación</p>
-                <p className="text-lg font-bold text-white">Valencia, España</p>
-                <p className="text-white/35 text-xs mt-1 font-mono">Open to Remote & On-site</p>
+                <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-1">{t.locationLabel}</p>
+                <p className="text-lg font-bold text-white">{t.location}</p>
+                <p className="text-white/35 text-xs mt-1 font-mono">{t.locationSub}</p>
               </div>
               <div className="border-t border-white/[0.07] pt-4">
-                <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-2">Contacto</p>
+                <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-2">{t.contactLabel}</p>
                 <div className="flex flex-col gap-2">
-                  <a href="https://linkedin.com/in/skalynovskyi" target="_blank" rel="noreferrer" className="text-xs text-cyan-400 hover:text-cyan-300 font-mono transition-colors flex items-center gap-1.5">
+                  <a href="https://linkedin.com/in/stanislav-kalynovskyi" target="_blank" rel="noreferrer" className="text-xs text-cyan-400 hover:text-cyan-300 font-mono transition-colors flex items-center gap-1.5">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     LinkedIn
                   </a>
-                  <a href="https://github.com/skalynovskyi" target="_blank" rel="noreferrer" className="text-xs text-white/50 hover:text-white font-mono transition-colors flex items-center gap-1.5">
+                  <a href="https://github.com/stkalynovskyi" target="_blank" rel="noreferrer" className="text-xs text-white/50 hover:text-white font-mono transition-colors flex items-center gap-1.5">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     GitHub
                   </a>
@@ -166,9 +221,9 @@ export default function About() {
 
           {/* ── Education ── */}
           <BentoCard index={2}>
-            <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-5">🎓 Formación</p>
+            <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-5">{t.eduLabel}</p>
             <div className="flex flex-col gap-5">
-              {educationItems.map((edu) => (
+              {t.educationItems.map((edu) => (
                 <div key={edu.short} className="flex gap-3 items-start">
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0"
@@ -193,9 +248,9 @@ export default function About() {
 
           {/* ── Languages ── */}
           <BentoCard index={3} className="md:col-span-1">
-            <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-5">🌐 Idiomas — Políglota</p>
+            <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-5">{t.langLabel}</p>
             <div className="flex flex-col gap-3.5">
-              {languages.map((lang) => (
+              {t.languages.map((lang) => (
                 <div key={lang.name} className="flex items-center gap-3">
                   <span className="text-xs text-white/65 w-20 shrink-0 font-medium">{lang.name}</span>
                   <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
@@ -218,9 +273,9 @@ export default function About() {
 
           {/* ── Interests ── */}
           <BentoCard index={4}>
-            <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-4">⚡ Intereses</p>
+            <p className="text-xs font-mono text-white/35 uppercase tracking-widest mb-4">{t.interestLabel}</p>
             <div className="flex flex-wrap gap-2">
-              {interests.map((item) => (
+              {t.interests.map((item) => (
                 <span
                   key={item}
                   className="px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 hover:border-cyan-400/30 hover:text-cyan-300 cursor-default"
@@ -232,7 +287,7 @@ export default function About() {
             </div>
             <div className="mt-5 pt-4 border-t border-white/[0.07]">
               <p className="text-xs text-white/30 font-mono leading-relaxed">
-                "Código limpio, tests que cubren, documentación que se entiende."
+                {t.quote}
               </p>
             </div>
           </BentoCard>

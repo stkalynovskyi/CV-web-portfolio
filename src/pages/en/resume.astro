@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.jsx';
+import CurriculumPage from '../../components/CurriculumPage.jsx';
+---
+
+<Layout
+  title="Resume — Stanislav Kalynovskyi"
+  description="Professional experience and tech stack of Stanislav Kalynovskyi. Internship at AHORA ERP with C#, .NET and T-SQL."
+  activePage="/en/resume"
+  lang="en"
+>
+  <Navbar client:load activePage="/en/resume" lang="en" />
+  <CurriculumPage client:load lang="en" />
+</Layout>

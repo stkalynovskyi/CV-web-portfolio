@@ -1,34 +1,86 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const experiences = [
-  {
-    id: 'ahora',
-    company: 'AHORA ERP',
-    type: 'Prácticas FCT',
-    role: 'Desarrollador de Software',
-    period: 'Feb 2025 — Jun 2025',
-    duration: '5 meses',
-    status: 'Completado',
-    statusColor: '#10b981',
-    location: 'Valencia, España',
-    tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git', 'Visual Studio'],
-    description: 'Prácticas realizadas durante el último módulo del CFGS DAM en una empresa de software ERP. Trabajé en el equipo de desarrollo backend colaborando en proyectos reales de producción.',
-    bullets: [
-      { cmd: 'backend.dev',   text: 'Desarrollo de lógica de negocio y nuevas funcionalidades backend usando C# y .NET Framework en el contexto de un ERP empresarial.' },
-      { cmd: 'db.design',     text: 'Diseño y optimización de consultas complejas en bases de datos relacionales SQL Server usando T-SQL, incluyendo procedimientos almacenados.' },
-      { cmd: 'git.workflow',  text: 'Gestión del control de versiones con Git y trabajo colaborativo con el equipo de desarrollo siguiendo metodologías ágiles.' },
-      { cmd: 'debug.resolve', text: 'Detección y resolución de bugs en módulos existentes, mejorando la estabilidad y el rendimiento de funcionalidades críticas.' },
-    ],
+const content = {
+  es: {
+    sectionLabel: '03 / Experiencia',
+    titleStart: 'Trayectoria ',
+    titleHighlight: 'profesional',
+    subtitle: 'Experiencia real en entorno empresarial durante las prácticas del CFGS DAM.',
+    nextRole: 'Próximo rol',
+    yourCompany: 'Tu empresa aquí',
+    highlights: 'Highlights',
+    durationLabel: 'Duración',
+    sectorLabel: 'Sector',
+    areaLabel: 'Área',
+    modeLabel: 'Modalidad',
+    onSite: 'Presencial',
+    experiences: [
+      {
+        id: 'ahora',
+        company: 'AHORA ERP',
+        type: 'Prácticas FCT',
+        role: 'Desarrollador de Software',
+        period: 'Feb 2025 — Jun 2025',
+        duration: '5 meses',
+        status: 'Completado',
+        statusColor: '#10b981',
+        location: 'Valencia, España',
+        tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git', 'Visual Studio'],
+        description: 'Prácticas realizadas durante el último módulo del CFGS DAM en una empresa de software ERP. Trabajé en el equipo de desarrollo backend colaborando en proyectos reales de producción.',
+        bullets: [
+          { cmd: 'backend.dev',   text: 'Desarrollo de lógica de negocio y nuevas funcionalidades backend usando C# y .NET Framework en el contexto de un ERP empresarial.' },
+          { cmd: 'db.design',     text: 'Diseño y optimización de consultas complejas en bases de datos relacionales SQL Server usando T-SQL, incluyendo procedimientos almacenados.' },
+          { cmd: 'git.workflow',  text: 'Gestión del control de versiones con Git y trabajo colaborativo con el equipo de desarrollo siguiendo metodologías ágiles.' },
+          { cmd: 'debug.resolve', text: 'Detección y resolución de bugs en módulos existentes, mejorando la estabilidad y el rendimiento de funcionalidades críticas.' },
+        ],
+      },
+    ]
   },
-];
+  en: {
+    sectionLabel: '03 / Experience',
+    titleStart: 'Professional ',
+    titleHighlight: 'trajectory',
+    subtitle: 'Real enterprise environment experience during my Multi-platform App Development internship.',
+    nextRole: 'Next role',
+    yourCompany: 'Your company here',
+    highlights: 'Highlights',
+    durationLabel: 'Duration',
+    sectorLabel: 'Sector',
+    areaLabel: 'Area',
+    modeLabel: 'Mode',
+    onSite: 'On-site',
+    experiences: [
+      {
+        id: 'ahora',
+        company: 'AHORA ERP',
+        type: 'Internship',
+        role: 'Software Developer',
+        period: 'Feb 2025 — Jun 2025',
+        duration: '5 months',
+        status: 'Completed',
+        statusColor: '#10b981',
+        location: 'Valencia, Spain',
+        tech: ['C#', '.NET Framework', 'T-SQL', 'SQL Server', 'Git', 'Visual Studio'],
+        description: 'Internship completed during the final module of my Higher Degree in Multi-platform App Development at an ERP software company. I worked on the backend development team collaborating on real production projects.',
+        bullets: [
+          { cmd: 'backend.dev',   text: 'Development of business logic and new backend features using C# and .NET Framework in an enterprise ERP context.' },
+          { cmd: 'db.design',     text: 'Design and optimization of complex queries in SQL Server relational databases using T-SQL, including stored procedures.' },
+          { cmd: 'git.workflow',  text: 'Version control management with Git and collaborative work with the development team following agile methodologies.' },
+          { cmd: 'debug.resolve', text: 'Detection and resolution of bugs in existing modules, improving the stability and performance of critical features.' },
+        ],
+      },
+    ]
+  }
+};
 
-export default function Experience() {
+export default function Experience({ lang = 'es' }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [activeId, setActiveId] = useState('ahora');
 
-  const active = experiences.find((e) => e.id === activeId);
+  const t = content[lang] || content.es;
+  const active = t.experiences.find((e) => e.id === activeId);
 
   return (
     <section id="experience" className="py-24 relative">
@@ -43,15 +95,15 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase">03 / Experiencia</span>
+          <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase">{t.sectionLabel}</span>
           <h2 className="text-3xl sm:text-4xl font-black text-white mt-2" style={{ fontFamily: 'var(--font-display)' }}>
-            Trayectoria{' '}
+            {t.titleStart}
             <span style={{ background: 'linear-gradient(135deg, #00f5ff, #8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              profesional
+              {t.titleHighlight}
             </span>
           </h2>
           <p className="text-white/35 text-sm mt-3 max-w-lg">
-            Experiencia real en entorno empresarial durante las prácticas del CFGS DAM.
+            {t.subtitle}
           </p>
         </motion.div>
 
@@ -63,7 +115,7 @@ export default function Experience() {
               <div className="absolute left-[15px] top-6 bottom-6 w-px bg-gradient-to-b from-cyan-400/60 via-purple-500/30 to-transparent" />
 
               <div className="flex flex-col gap-3">
-                {experiences.map((job, i) => (
+                {t.experiences.map((job, i) => (
                   <motion.button
                     key={job.id}
                     initial={{ opacity: 0, x: -20 }}
@@ -95,8 +147,8 @@ export default function Experience() {
                 {/* Future slot */}
                 <div className="relative pl-10 pr-4 py-4 rounded-xl border border-dashed border-white/[0.08] opacity-35">
                   <div className="absolute left-[11px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border-2 border-white/20" />
-                  <p className="text-xs text-white/30 font-mono">Próximo rol</p>
-                  <p className="text-xs text-white/20 font-mono mt-1">Tu empresa aquí</p>
+                  <p className="text-xs text-white/30 font-mono">{t.nextRole}</p>
+                  <p className="text-xs text-white/20 font-mono mt-1">{t.yourCompany}</p>
                 </div>
               </div>
             </div>
@@ -108,13 +160,13 @@ export default function Experience() {
               transition={{ delay: 0.6 }}
               className="glass rounded-xl p-4 border border-white/[0.06] mt-2"
             >
-              <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-3">Highlights</p>
+              <p className="text-xs font-mono text-white/30 uppercase tracking-widest mb-3">{t.highlights}</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { v: '5 meses', l: 'Duración' },
-                  { v: 'ERP', l: 'Sector' },
-                  { v: 'Backend', l: 'Área' },
-                  { v: 'Presencial', l: 'Modalidad' },
+                  { v: active?.duration || t.experiences[0].duration, l: t.durationLabel },
+                  { v: 'ERP', l: t.sectorLabel },
+                  { v: 'Backend', l: t.areaLabel },
+                  { v: t.onSite, l: t.modeLabel },
                 ].map((s) => (
                   <div key={s.l}>
                     <p className="text-sm font-bold text-cyan-400" style={{ fontFamily: 'var(--font-display)' }}>{s.v}</p>

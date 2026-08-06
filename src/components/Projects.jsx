@@ -1,33 +1,82 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const projects = [
-  {
-    id: 'photopin',
-    title: 'PhotoPin',
-    type: 'Proyecto de Fin de Grado',
-    badge: 'Full-Stack · Mobile',
-    badgeColor: '#00f5ff',
-    grade: '10/10',
-    description:
-      'Aplicación móvil multiplataforma que permite a los usuarios capturar y descubrir fotografías geolocalizadas en tiempo real. Los usuarios pueden publicar fotos vinculadas a su ubicación GPS, explorarlas en un mapa interactivo y filtrarlas por categorías.',
-    features: [
-      'Geolocalización en tiempo real con Google Maps API + marcadores personalizados',
-      'Backend RESTful con autenticación JWT y gestión de sesiones seguras',
-      'App multiplataforma iOS/Android/Web con Ionic + Angular',
-      'Base de datos documental MongoDB con esquemas optimizados',
-      'Galería de fotos por zona, filtros y sistema de categorías',
-      'Perfil de usuario, subida de imágenes y gestión de publicaciones propias',
+const content = {
+  es: {
+    projects: [
+      {
+        id: 'photopin',
+        title: 'PhotoPin',
+        type: 'Proyecto de Fin de Grado',
+        badge: 'Full-Stack · Mobile',
+        badgeColor: '#00f5ff',
+        grade: '10/10',
+        description:
+          'Aplicación móvil multiplataforma que permite a los usuarios capturar y descubrir fotografías geolocalizadas en tiempo real. Los usuarios pueden publicar fotos vinculadas a su ubicación GPS, explorarlas en un mapa interactivo y filtrarlas por categorías.',
+        features: [
+          'Geolocalización en tiempo real con Google Maps API + marcadores personalizados',
+          'Backend RESTful con autenticación JWT y gestión de sesiones seguras',
+          'App multiplataforma iOS/Android/Web con Ionic + Angular',
+          'Base de datos documental MongoDB con esquemas optimizados',
+          'Galería de fotos por zona, filtros y sistema de categorías',
+          'Perfil de usuario, subida de imágenes y gestión de publicaciones propias',
+        ],
+        tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
+        gradient: 'from-cyan-500/15 via-blue-500/8 to-transparent',
+        accentColor: '#00f5ff',
+        emoji: '📍',
+        links: { github: 'https://github.com/stkalynovskyi', demo: null },
+      },
     ],
-    tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
-    gradient: 'from-cyan-500/15 via-blue-500/8 to-transparent',
-    accentColor: '#00f5ff',
-    emoji: '📍',
-    links: { github: 'https://github.com/skalynovskyi', demo: null },
+    featuresLabel: 'Funcionalidades',
+    viewCode: 'Ver código',
+    liveDemo: 'Demo live',
+    sectionLabel: '04 / Proyectos',
+    titleStart: 'Trabajo ',
+    titleHighlight: 'destacado',
+    subtitle: 'Proyectos que demuestran mi capacidad técnica, criterio de diseño y atención al detalle.',
+    moreProjects: 'Más proyectos en desarrollo...',
+    learning: 'Actualmente aprendiendo Astro, Three.js & WebGL'
   },
-];
+  en: {
+    projects: [
+      {
+        id: 'photopin',
+        title: 'PhotoPin',
+        type: 'Final Degree Project',
+        badge: 'Full-Stack · Mobile',
+        badgeColor: '#00f5ff',
+        grade: '10/10',
+        description:
+          'Cross-platform mobile application that allows users to capture and discover real-time geolocated photos. Users can post photos linked to their GPS location, explore them on an interactive map, and filter them by categories.',
+        features: [
+          'Real-time geolocation with Google Maps API + custom markers',
+          'RESTful backend with JWT authentication and secure session management',
+          'Cross-platform iOS/Android/Web app with Ionic + Angular',
+          'MongoDB document database with optimized schemas',
+          'Photo gallery by area, filters, and category system',
+          'User profile, image uploads, and personal post management',
+        ],
+        tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
+        gradient: 'from-cyan-500/15 via-blue-500/8 to-transparent',
+        accentColor: '#00f5ff',
+        emoji: '📍',
+        links: { github: 'https://github.com/stkalynovskyi', demo: null },
+      },
+    ],
+    featuresLabel: 'Features',
+    viewCode: 'View code',
+    liveDemo: 'Live demo',
+    sectionLabel: '04 / Projects',
+    titleStart: 'Featured ',
+    titleHighlight: 'work',
+    subtitle: 'Projects that demonstrate my technical skills, design criteria, and attention to detail.',
+    moreProjects: 'More projects in development...',
+    learning: 'Currently learning Astro, Three.js & WebGL'
+  }
+};
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, t }) {
   const [hovered, setHovered] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
@@ -88,7 +137,7 @@ function ProjectCard({ project, index }) {
 
         {/* Features */}
         <div className="mb-6">
-          <p className="text-[11px] font-mono text-white/25 uppercase tracking-wider mb-2.5">Funcionalidades</p>
+          <p className="text-[11px] font-mono text-white/25 uppercase tracking-wider mb-2.5">{t.featuresLabel}</p>
           <ul className="space-y-2">
             {project.features.map((f, i) => (
               <motion.li
@@ -123,7 +172,7 @@ function ProjectCard({ project, index }) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
             </svg>
-            Ver código
+            {t.viewCode}
           </a>
           {project.links.demo && (
             <a href={project.links.demo} target="_blank" rel="noreferrer"
@@ -133,7 +182,7 @@ function ProjectCard({ project, index }) {
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                 <polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
               </svg>
-              Demo live
+              {t.liveDemo}
             </a>
           )}
         </div>
@@ -142,9 +191,10 @@ function ProjectCard({ project, index }) {
   );
 }
 
-export default function Projects() {
+export default function Projects({ lang = 'es' }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const t = content[lang] || content.es;
 
   return (
     <section id="projects" className="py-24 relative">
@@ -152,20 +202,20 @@ export default function Projects() {
 
       <div className="section-container">
         <motion.div ref={ref} initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }} className="mb-12">
-          <span className="text-xs font-mono tracking-[0.3em] text-purple-400 uppercase">04 / Proyectos</span>
+          <span className="text-xs font-mono tracking-[0.3em] text-purple-400 uppercase">{t.sectionLabel}</span>
           <h2 className="text-3xl sm:text-4xl font-black text-white mt-2" style={{ fontFamily: 'var(--font-display)' }}>
-            Trabajo{' '}
+            {t.titleStart}
             <span style={{ background: 'linear-gradient(135deg, #8b5cf6, #00f5ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              destacado
+              {t.titleHighlight}
             </span>
           </h2>
           <p className="text-white/35 text-sm mt-3 max-w-xl">
-            Proyectos que demuestran mi capacidad técnica, criterio de diseño y atención al detalle.
+            {t.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-          {projects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
+          {t.projects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} t={t} />)}
 
           {/* Coming soon */}
           <motion.div
@@ -176,8 +226,8 @@ export default function Projects() {
             className="rounded-2xl border border-dashed border-white/[0.09] p-10 flex flex-col items-center justify-center gap-4 min-h-[240px] hover:border-white/20 transition-colors group"
           >
             <div className="text-4xl opacity-30 group-hover:opacity-50 transition-opacity">🚀</div>
-            <p className="text-white/25 text-sm font-mono text-center">Más proyectos en desarrollo...</p>
-            <p className="text-white/15 text-xs font-mono text-center">Actualmente aprendiendo Astro, Three.js & WebGL</p>
+            <p className="text-white/25 text-sm font-mono text-center">{t.moreProjects}</p>
+            <p className="text-white/15 text-xs font-mono text-center">{t.learning}</p>
           </motion.div>
         </div>
       </div>

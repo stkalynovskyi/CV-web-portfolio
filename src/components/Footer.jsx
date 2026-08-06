@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const socialLinks = [
   {
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/skalynovskyi',
+    href: 'https://linkedin.com/in/stanislav-kalynovskyi',
     color: '#0077b5',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -13,7 +13,7 @@ const socialLinks = [
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/skalynovskyi',
+    href: 'https://github.com/stkalynovskyi',
     color: '#ffffff',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -34,8 +34,28 @@ const socialLinks = [
   },
 ];
 
-export default function Footer() {
+const content = {
+  es: {
+    sectionLabel: '05 / Contacto',
+    titleStart: 'Trabajemos ',
+    titleHighlight: 'juntos',
+    subtitle: 'Iniciando mi carrera profesional y abierto a nuevos retos técnicos. Si tienes un proyecto interesante o una oportunidad, hablemos.',
+    sendEmail: 'Enviar Email',
+    downloadCv: 'Descargar CV',
+  },
+  en: {
+    sectionLabel: '05 / Contact',
+    titleStart: "Let's work ",
+    titleHighlight: 'together',
+    subtitle: 'Starting my professional career and open to new technical challenges. If you have an interesting project or opportunity, let\'s talk.',
+    sendEmail: 'Send Email',
+    downloadCv: 'Download CV',
+  }
+};
+
+export default function Footer({ lang = 'es' }) {
   const currentYear = new Date().getFullYear();
+  const t = content[lang] || content.es;
 
   return (
     <footer id="contact" className="relative py-24 overflow-hidden">
@@ -71,14 +91,14 @@ export default function Footer() {
           <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-cyan-400/40" />
 
           <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase">
-            05 / Contacto
+            {t.sectionLabel}
           </span>
 
           <h2
             className="text-3xl sm:text-5xl font-black text-white mt-4 mb-4 leading-tight"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Trabajemos{' '}
+            {t.titleStart}
             <span
               style={{
                 background: 'linear-gradient(135deg, #00f5ff 0%, #8b5cf6 100%)',
@@ -87,13 +107,12 @@ export default function Footer() {
                 backgroundClip: 'text',
               }}
             >
-              juntos
+              {t.titleHighlight}
             </span>
           </h2>
 
           <p className="text-white/50 text-base max-w-lg mx-auto mb-8">
-            Iniciando mi carrera profesional y abierto a nuevos retos técnicos.
-            Si tienes un proyecto interesante o una oportunidad, hablemos.
+            {t.subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -109,7 +128,7 @@ export default function Footer() {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
-              Enviar Email
+              {t.sendEmail}
             </a>
 
             <a
@@ -122,7 +141,7 @@ export default function Footer() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Descargar CV
+              {t.downloadCv}
             </a>
           </div>
         </motion.div>

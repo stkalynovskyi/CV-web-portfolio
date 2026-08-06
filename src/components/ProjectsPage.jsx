@@ -16,43 +16,81 @@ function FadeIn({ children, delay = 0 }) {
   );
 }
 
-const projects = [
-  {
-    id: 'photopin',
-    title: 'PhotoPin',
-    type: 'Proyecto de Fin de Grado',
-    description:
-      'Aplicación móvil multiplataforma para capturar y descubrir fotografías geolocalizadas en tiempo real. Los usuarios publican fotos vinculadas a su GPS y las exploran en un mapa interactivo.',
-    features: [
-      'Geolocalización en tiempo real con Google Maps API',
-      'Backend RESTful con autenticación JWT',
-      'App iOS/Android/Web con Ionic + Angular',
-      'Base de datos MongoDB con esquemas optimizados',
-      'Galería filtrable por categorías y zona geográfica',
-    ],
-    tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
-    github: 'https://github.com/skalynovskyi',
-    demo: null,
+const content = {
+  es: {
+    label: 'Proyectos',
+    title: 'Trabajo destacado',
+    subtitle: 'Proyectos que demuestran mi capacidad técnica y criterio de diseño.',
+    featuresLabel: 'FUNCIONALIDADES',
+    moreProjects: 'Más proyectos en desarrollo',
+    learning: 'Aprendiendo Astro, Three.js y WebGL',
+    projects: [
+      {
+        id: 'photopin',
+        title: 'PhotoPin',
+        type: 'Proyecto de Fin de Grado',
+        description:
+          'Aplicación móvil multiplataforma para capturar y descubrir fotografías geolocalizadas en tiempo real. Los usuarios publican fotos vinculadas a su GPS y las exploran en un mapa interactivo.',
+        features: [
+          'Geolocalización en tiempo real con Google Maps API',
+          'Backend RESTful con autenticación JWT',
+          'App iOS/Android/Web con Ionic + Angular',
+          'Base de datos MongoDB con esquemas optimizados',
+          'Galería filtrable por categorías y zona geográfica',
+        ],
+        tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
+        github: 'https://github.com/stkalynovskyi',
+        demo: null,
+      },
+    ]
   },
-];
+  en: {
+    label: 'Projects',
+    title: 'Featured Work',
+    subtitle: 'Projects that demonstrate my technical skills and design criteria.',
+    featuresLabel: 'FEATURES',
+    moreProjects: 'More projects in development',
+    learning: 'Learning Astro, Three.js and WebGL',
+    projects: [
+      {
+        id: 'photopin',
+        title: 'PhotoPin',
+        type: 'Final Degree Project',
+        description:
+          'Cross-platform mobile application to capture and discover real-time geolocated photos. Users post photos linked to their GPS and explore them on an interactive map.',
+        features: [
+          'Real-time geolocation with Google Maps API',
+          'RESTful backend with JWT authentication',
+          'iOS/Android/Web app with Ionic + Angular',
+          'MongoDB database with optimized schemas',
+          'Filterable gallery by categories and geographical area',
+        ],
+        tech: ['Angular', 'Ionic', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
+        github: 'https://github.com/stkalynovskyi',
+        demo: null,
+      },
+    ]
+  }
+};
 
-export default function ProjectsPage() {
+export default function ProjectsPage({ lang = 'es' }) {
+  const t = content[lang] || content.es;
   return (
     <main style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
       <div className="container">
 
         <FadeIn>
-          <p className="section-label">Proyectos</p>
-          <h1 className="section-title">Trabajo destacado</h1>
+          <p className="section-label">{t.label}</p>
+          <h1 className="section-title">{t.title}</h1>
           <p className="section-subtitle">
-            Proyectos que demuestran mi capacidad técnica y criterio de diseño.
+            {t.subtitle}
           </p>
         </FadeIn>
 
         <div style={{ height: '1px', background: 'var(--border)', margin: '4rem 0' }} />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {projects.map((p, i) => (
+          {t.projects.map((p, i) => (
             <FadeIn key={p.id} delay={0.08 * i}>
               <article className="card">
                 {/* Header */}
@@ -91,7 +129,7 @@ export default function ProjectsPage() {
 
                 {/* Features */}
                 <div style={{ marginBottom: '2rem' }}>
-                  <p style={{ fontSize: '0.68rem', color: 'var(--text-3)', letterSpacing: '0.2em', marginBottom: '0.875rem' }}>FUNCIONALIDADES</p>
+                  <p style={{ fontSize: '0.68rem', color: 'var(--text-3)', letterSpacing: '0.2em', marginBottom: '0.875rem' }}>{t.featuresLabel}</p>
                   <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                     {p.features.map((f) => (
                       <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.88rem', color: 'var(--text-2)' }}>
@@ -118,8 +156,8 @@ export default function ProjectsPage() {
               padding: '3rem 2rem',
               textAlign: 'center',
             }}>
-              <p style={{ color: 'var(--text-3)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>Más proyectos en desarrollo</p>
-              <p style={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.75rem' }}>Aprendiendo Astro, Three.js y WebGL</p>
+              <p style={{ color: 'var(--text-3)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>{t.moreProjects}</p>
+              <p style={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.75rem' }}>{t.learning}</p>
             </div>
           </FadeIn>
         </div>

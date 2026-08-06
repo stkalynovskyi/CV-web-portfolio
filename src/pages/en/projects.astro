@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.jsx';
+import ProjectsPage from '../../components/ProjectsPage.jsx';
+---
+
+<Layout
+  title="Projects — Stanislav Kalynovskyi"
+  description="Featured projects by Stanislav Kalynovskyi: PhotoPin and more. Full-Stack with Angular, Node.js and MongoDB."
+  activePage="/en/projects"
+  lang="en"
+>
+  <Navbar client:load activePage="/en/projects" lang="en" />
+  <ProjectsPage client:load lang="en" />
+</Layout>

@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.jsx';
+import AboutPage from '../../components/AboutPage.jsx';
+---
+
+<Layout
+  title="About me — Stanislav Kalynovskyi"
+  description="Meet Stanislav Kalynovskyi: his education, languages, and professional profile as a Full-Stack Developer."
+  activePage="/en/about"
+  lang="en"
+>
+  <Navbar client:load activePage="/en/about" lang="en" />
+  <AboutPage client:load lang="en" />
+</Layout>

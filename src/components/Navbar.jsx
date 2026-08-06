@@ -1,16 +1,42 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const navLinks = [
-  { label: 'Sobre mí',   href: '/sobre-mi'  },
-  { label: 'Currículum', href: '/curriculum' },
-  { label: 'Proyectos',  href: '/proyectos'  },
-  { label: 'Contacto',   href: '/contacto'   },
-];
+const linksDict = {
+  es: [
+    { label: 'Sobre mí',   href: '/sobre-mi'  },
+    { label: 'Currículum', href: '/curriculum' },
+    { label: 'Proyectos',  href: '/proyectos'  },
+    { label: 'Contacto',   href: '/contacto'   },
+  ],
+  en: [
+    { label: 'About',    href: '/en/about'    },
+    { label: 'Resume',   href: '/en/resume'   },
+    { label: 'Projects', href: '/en/projects' },
+    { label: 'Contact',  href: '/en/contact'  },
+  ]
+};
 
-export default function Navbar({ activePage = '' }) {
+const routeMap = {
+  '/': '/en',
+  '/sobre-mi': '/en/about',
+  '/curriculum': '/en/resume',
+  '/proyectos': '/en/projects',
+  '/contacto': '/en/contact',
+};
+const getAltRoute = (activePage, lang) => {
+  if (lang === 'es') {
+    return routeMap[activePage] || '/en';
+  } else {
+    const esRoute = Object.keys(routeMap).find(key => routeMap[key] === activePage);
+    return esRoute || '/';
+  }
+};
+
+export default function Navbar({ activePage = '', lang = 'es' }) {
+  const currentLinks = linksDict[lang] || linksDict.es;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const altRoute = getAltRoute(activePage, lang);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
@@ -35,7 +61,7 @@ export default function Navbar({ activePage = '' }) {
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
         {/* Logo */}
-        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <a href={lang === 'en' ? '/en' : '/'} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <span style={{
             fontFamily: 'var(--font-display)',
             fontWeight: 900,
@@ -50,7 +76,7 @@ export default function Navbar({ activePage = '' }) {
         {/* Desktop nav */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}
              className="desktop-nav">
-          {navLinks.map((link) => {
+          {currentLinks.map((link) => {
             const isActive = activePage === link.href;
             return (
               <a
@@ -76,32 +102,45 @@ export default function Navbar({ activePage = '' }) {
           })}
         </nav>
 
-        {/* CV Download */}
-        <a
-          href="/Stanislav_Kalynovskyi_CV.pdf"
-          download="Stanislav_Kalynovskyi_CV.pdf"
-          className="hidden md:inline-flex"
-          style={{
-            alignItems: 'center', gap: '0.4rem',
-            padding: '0.55rem 1.25rem',
-            fontSize: '0.78rem', fontWeight: 600,
-            color: 'var(--cyan)',
-            border: '1px solid rgba(0,245,255,0.3)',
-            borderRadius: '8px',
-            background: 'rgba(0,245,255,0.05)',
-            textDecoration: 'none',
-            transition: 'all 0.2s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,245,255,0.12)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,245,255,0.05)'; }}
-        >
-          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-          Descargar CV
-        </a>
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href={altRoute}
+            style={{
+              fontSize: '0.75rem', fontWeight: 700,
+              color: 'var(--text-3)', textDecoration: 'none',
+              letterSpacing: '0.05em', transition: 'color 0.2s'
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text-1)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-3)'}
+          >
+            {lang === 'es' ? 'EN' : 'ES'}
+          </a>
+
+          <a
+            href="/Stanislav_Kalynovskyi_CV.pdf"
+            download="Stanislav_Kalynovskyi_CV.pdf"
+            style={{
+              display: 'flex', alignItems: 'center', gap: '0.4rem',
+              padding: '0.55rem 1.25rem',
+              fontSize: '0.78rem', fontWeight: 600,
+              color: 'var(--cyan)',
+              border: '1px solid rgba(0,245,255,0.3)',
+              borderRadius: '8px',
+              background: 'rgba(0,245,255,0.05)',
+              textDecoration: 'none',
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,245,255,0.12)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,245,255,0.05)'; }}
+          >
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            {lang === 'es' ? 'Descargar CV' : 'Download CV'}
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -130,7 +169,19 @@ export default function Navbar({ activePage = '' }) {
             style={{ overflow: 'hidden', borderTop: '1px solid var(--border)', background: 'rgba(6,6,9,0.96)' }}
           >
             <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '0', paddingTop: '0.5rem', paddingBottom: '1rem' }}>
-              {navLinks.map((link) => (
+              <div style={{ display: 'flex', justifyContent: 'center', padding: '0.5rem 0', borderBottom: '1px solid var(--border)' }}>
+                <a
+                  href={altRoute}
+                  style={{
+                    fontSize: '0.8rem', fontWeight: 700,
+                    color: 'var(--text-1)', textDecoration: 'none',
+                    letterSpacing: '0.05em'
+                  }}
+                >
+                  {lang === 'es' ? '🌐 English' : '🌐 Español'}
+                </a>
+              </div>
+              {currentLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -147,7 +198,7 @@ export default function Navbar({ activePage = '' }) {
                 </a>
               ))}
               <a href="/Stanislav_Kalynovskyi_CV.pdf" download="Stanislav_Kalynovskyi_CV.pdf" style={{ marginTop: '1rem', textAlign: 'center', padding: '0.75rem', color: 'var(--cyan)', border: '1px solid rgba(0,245,255,0.25)', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-                Descargar CV
+                {lang === 'es' ? 'Descargar CV' : 'Download CV'}
               </a>
             </div>
           </motion.div>
